@@ -48,48 +48,44 @@ class _ChartAppState extends State<ChartApp> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
-        body: Column(children: [
-          SfCartesianChart(
-            title: ChartTitle(text: 'Customized by dateFormat'),
-            primaryXAxis: DateTimeAxis(
-              dateFormat: DateFormat.yMd(),
-            ),
-            series: <LineSeries<SeriesData, DateTime>>[
-              LineSeries(
-                dataSource: chartData,
-                xValueMapper: (SeriesData sales, _) => sales.x,
-                yValueMapper: (SeriesData sales, _) => sales.y,
-              )
-            ],
-          ),
-          SfCartesianChart(
-            title: ChartTitle(text: 'Customized by axisLabelFormatter'),
-            primaryXAxis: DateTimeAxis(
-              axisLabelFormatter: (axisLabelRenderArgs) {
-                return ChartAxisLabel(
-                    DateFormat('EEEE').format(
-                        DateTime.fromMillisecondsSinceEpoch(
-                            axisLabelRenderArgs.value.toInt())),
-                    const TextStyle(
-                        color: Colors.teal, fontWeight: FontWeight.bold));
-              },
-            ),
-            series: <LineSeries<SeriesData, DateTime>>[
-              LineSeries(
-                dataSource: chartData,
-                xValueMapper: (SeriesData sales, _) => sales.x,
-                yValueMapper: (SeriesData sales, _) => sales.y,
-              )
-            ],
-          ),
-        ]));
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SfCartesianChart(
+                title: ChartTitle(text: 'Customized by dateFormat'),
+                primaryXAxis: DateTimeAxis(
+                  dateFormat: DateFormat.yMd(),
+                ),
+                series: <LineSeries<SeriesData, DateTime>>[
+                  LineSeries(
+                    dataSource: chartData,
+                    xValueMapper: (SeriesData sales, _) => sales.x,
+                    yValueMapper: (SeriesData sales, _) => sales.y,
+                  )
+                ],
+              ),
+              SfCartesianChart(
+                title: ChartTitle(text: 'Customized by axisLabelFormatter'),
+                primaryXAxis: DateTimeAxis(
+                  axisLabelFormatter: (axisLabelRenderArgs) {
+                    return ChartAxisLabel(
+                        DateFormat('EEEE').format(
+                            DateTime.fromMillisecondsSinceEpoch(
+                                axisLabelRenderArgs.value.toInt())),
+                        const TextStyle(
+                            color: Colors.teal, fontWeight: FontWeight.bold));
+                  },
+                ),
+                series: <LineSeries<SeriesData, DateTime>>[
+                  LineSeries(
+                    dataSource: chartData,
+                    xValueMapper: (SeriesData sales, _) => sales.x,
+                    yValueMapper: (SeriesData sales, _) => sales.y,
+                  )
+                ],
+              ),
+            ]));
   }
-}
-
-class SeriesData {
-  SeriesData(this.x, this.y);
-  final DateTime x;
-  final num y;
 }
 
 class SeriesData {
