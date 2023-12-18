@@ -56,7 +56,7 @@ class _ChartAppState extends State<ChartApp> {
                 primaryXAxis: DateTimeAxis(
                   dateFormat: DateFormat.yMd(),
                 ),
-                series: <ChartSeries<SeriesData, DateTime>>[
+                series: <LineSeries<SeriesData, DateTime>>[
                   LineSeries(
                     dataSource: chartData,
                     xValueMapper: (SeriesData sales, _) => sales.x,
@@ -76,7 +76,7 @@ class _ChartAppState extends State<ChartApp> {
                             color: Colors.teal, fontWeight: FontWeight.bold));
                   },
                 ),
-                series: <ChartSeries<SeriesData, DateTime>>[
+                series: <LineSeries<SeriesData, DateTime>>[
                   LineSeries(
                     dataSource: chartData,
                     xValueMapper: (SeriesData sales, _) => sales.x,
